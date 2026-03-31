@@ -1,85 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <title>Network bits checker!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Error Detection Calculator — CRC, Checksum &amp; Hamming Code | Step-by-Step Solutions</title>
+    <meta name="description" content="Free online network error detection calculator with step-by-step solutions. Supports CRC (Cyclic Redundancy Check), Checksum, and Hamming Code methods. Encode, decode, detect and correct errors in binary data.">
+    <meta name="keywords" content="CRC calculator, checksum calculator, hamming code, error detection, error correction, cyclic redundancy check, binary checksum, parity bits, XOR division, polynomial division, network error detection, data link layer, computer networks">
+    <meta name="author" content="Arose Niazi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nc.arose-niazi.me/network/">
 
-    <link rel="stylesheet" href="input.css">
-    <link rel="stylesheet" href="table.css">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Network Error Detection Calculator — Step-by-Step Solutions">
+    <meta property="og:description" content="Free online calculator for CRC, Checksum, and Hamming Code with detailed step-by-step solutions. Encode, decode, and correct errors in binary data.">
+    <meta property="og:url" content="https://nc.arose-niazi.me/network/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NC Network Error Detection">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Network Error Detection Calculator — Step-by-Step Solutions">
+    <meta name="twitter:description" content="Free online calculator for CRC, Checksum, and Hamming Code with detailed step-by-step solutions.">
+
+    <!-- OG Image -->
+    <meta property="og:image" content="https://nc.arose-niazi.me/network/favicon.svg">
+    <meta name="twitter:image" content="https://nc.arose-niazi.me/network/favicon.svg">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Net Error">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Network Error Detection Calculator",
+        "url": "https://nc.arose-niazi.me/network/",
+        "description": "Free online network error detection calculator with step-by-step solutions. Supports CRC, Checksum, and Hamming Code methods.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Arose Niazi", "url": "https://arose-niazi.me" },
+        "educationalLevel": "University",
+        "about": {
+            "@type": "Thing",
+            "name": "Network Error Detection",
+            "description": "Methods for detecting and correcting errors in digital data transmission including CRC, Checksum, and Hamming Code"
+        }
+    }
+    </script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css?v=1">
+    <!-- App -->
+    <script src="app.js?v=1" defer></script>
 </head>
 <body>
-<div class="block" style="text-align: center;">
-    <h1>Network bits checker!</h1>
-    by Arose Niazi
-</div>
-<div class="block">
-    <form autocomplete="on">
-        <table width="100%">
-            <tr>
-                <th><label for="bitsField" sty>Bits Block</label></th>
-                <th><label for="polyField">Polynomial Powers </label></th>
-                <th><label for="remainField">Remainder</label></th>
-            </tr>
-            <tr>
-                <td><input type="number" maxlength="16" name="Bits" id="bitsField" placeholder="Enter Bits here" autocomplete="on" pattern="[0-1]*" required/>
-                </td>
-                <td><input type="number" name="Polynomial" id="polyField" placeholder="Enter the powers of polynomial here" required/>
-                </td>
-                <td><input type="number" name="Remainder" id="remainField" placeholder="Enter Remainder to check only"/>
-                </td>
-            </tr>
-        </table>
-        <input type="button" value="CRC" onclick="PreformCRC(Bits,Polynomial,Remainder)" />
-        <table width="100%">
-            <tr>
-                <th><label for="firstQuery" sty>First Bits Block</label></th>
-                <th><label for="secondQuery">Second Bits Block</label></th>
-                <th><label for="checkSum">Checksum Block</label></th>
-            </tr>
-            <tr>
-                <td><input type="number" maxlength="16" name="fc1" id="firstQuery" placeholder="First Bit String" autocomplete="on" pattern="[0-1]*" required/>
-                </td>
-                <td><input type="number" name="fc2" id="secondQuery" placeholder="Second Bit String" required/>
-                </td>
-                <td><input type="number" name="checkSum" id="checkSum" placeholder="Enter checksum to check only"/>
-                </td>
-            </tr>
-        </table>
-        <input type="button" value="Checksum" onclick="PreformChecksum(fc1,fc2,checkSum)" />
-        <table width="100%">
-            <tr>
-                <th><label for="dataBitsL" sty>Data Bits Block</label></th>
-                <th><label for="checkBitsL">Check Bits Block</label></th>
-            </tr>
-            <tr>
-                <td><input type="number" maxlength="16" name="dataBits" id="dataBitsL" placeholder="Data Bit String" autocomplete="on" pattern="[0-1]*" required/>
-                </td>
-                <td><input type="number" name="checkBits" id="checkBitsL" placeholder="Check Bit String"/>
-                </td>
-            </tr>
-        </table>
-        <input type="button" value="Hamming" onclick="PreformHamming(dataBits,checkBits)" />
-        <input type="button" value="Clear output" onclick="clearOutput()" />
-        <!--<label for="typeOf">Type</label>
-        <select id="typeOf" name="Masking">
-            <option value="true">Variable Length Subnet Masking</option>
-            <option value="false">Fixed Length Subnet Masking</option>
-        </select>-->
 
-    </form>
-</div>
-<br>
-<div class="block">
-    <P id="Output">
+    <!-- Suite Navigation -->
+    <nav class="suite-nav" aria-label="Suite navigation">
+        <a href="https://nc.arose-niazi.me/">← NC Suite</a>
+    </nav>
 
-    </P>
-</div>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="site-title">Network Error Detection<span>Calculator</span></h1>
+            <div class="header-actions">
+                <button id="history-toggle-btn" type="button" aria-label="Toggle history panel">History</button>
+                <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="primary-area">
+
+            <!-- Input Card -->
+            <section class="card" aria-label="Input">
+                <h2 class="card-title">Input</h2>
+
+                <!-- Method Selection -->
+                <div class="controls-row">
+                    <div class="control-group">
+                        <label for="method-select">Method</label>
+                        <select id="method-select">
+                            <option value="crc">CRC (Cyclic Redundancy Check)</option>
+                            <option value="checksum">Checksum</option>
+                            <option value="hamming">Hamming Code</option>
+                        </select>
+                    </div>
+
+                    <!-- CRC-specific controls -->
+                    <div class="control-group" id="crc-preset-group">
+                        <label for="crc-preset">Preset Polynomial</label>
+                        <select id="crc-preset">
+                            <option value="custom">Custom</option>
+                            <option value="1011">CRC-3 (1011)</option>
+                            <option value="10011">CRC-4 (10011)</option>
+                            <option value="110101">CRC-5 USB (110101)</option>
+                            <option value="1100001">CRC-6 (1100001)</option>
+                            <option value="100000111">CRC-8 (100000111)</option>
+                        </select>
+                    </div>
+
+                    <!-- Checksum-specific controls -->
+                    <div class="control-group" id="checksum-bits-group" style="display:none">
+                        <label for="checksum-bits">Block Size (bits)</label>
+                        <select id="checksum-bits">
+                            <option value="4">4 bits</option>
+                            <option value="8" selected>8 bits</option>
+                            <option value="16">16 bits</option>
+                        </select>
+                    </div>
+
+                    <!-- Hamming-specific controls -->
+                    <div class="control-group" id="hamming-mode-group" style="display:none">
+                        <label for="hamming-mode">Mode</label>
+                        <select id="hamming-mode">
+                            <option value="encode">Encode</option>
+                            <option value="decode">Decode (Check &amp; Correct)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Data Input -->
+                <div class="input-section">
+                    <label for="data-input" class="input-label" id="data-label">Binary Data</label>
+                    <input type="text" id="data-input" class="text-input" placeholder="Enter binary data (e.g., 11010011101100)" autocomplete="off" spellcheck="false">
+                    <p class="input-hint" id="data-hint">Enter a binary string (0s and 1s only)</p>
+                </div>
+
+                <!-- CRC Polynomial Input -->
+                <div class="input-section" id="poly-section">
+                    <label for="poly-input" class="input-label">Generator Polynomial (Divisor)</label>
+                    <input type="text" id="poly-input" class="text-input" placeholder="Enter generator polynomial (e.g., 1011)" autocomplete="off" spellcheck="false">
+                    <p class="input-hint">The divisor polynomial in binary. Leading 1 required. Degree = number of CRC bits.</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="btn-row">
+                    <button id="calculate-btn" class="btn btn-primary" type="button">Calculate</button>
+                    <button id="random-btn" class="btn btn-secondary" type="button">Random</button>
+                    <button id="clear-btn" class="btn btn-secondary" type="button">Clear Output</button>
+                </div>
+
+                <p class="tip-text">
+                    Tip: Press <kbd>Ctrl+Enter</kbd> to calculate
+                </p>
+            </section>
+
+            <!-- Output -->
+            <section id="output" aria-label="Calculation results"></section>
+        </div>
+
+        <!-- History Panel -->
+        <aside id="history-panel">
+            <div class="card">
+                <h2 class="card-title">
+                    History
+                    <button id="clear-history-btn" class="btn btn-small btn-secondary" type="button">Clear</button>
+                </h2>
+                <div id="history-list"></div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; 2022&ndash;2026 Arose Niazi</span>
+            <nav class="footer-links" aria-label="Footer links">
+                <a href="https://nc.arose-niazi.me/">NC Suite</a>
+                <a href="https://github.com/Arose-Niazi/network-bits-checker" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://arose-niazi.me" target="_blank" rel="noopener noreferrer">Author</a>
+            </nav>
+        </div>
+    </footer>
+
 </body>
-<footer>
-    <script src="Writer.js"></script>
-    <script src="CRC.js"></script>
-    <script src="Checksum.js"></script>
-    <script src="Hamming.js"></script>
-    <script src="Runner.js"></script>
-</footer>
 </html>

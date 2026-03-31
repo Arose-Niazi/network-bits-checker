@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="16" fill="#6366f1"/>
+  <text x="50" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="700" fill="white">CRC</text>
+  <text x="50" y="62" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="500" fill="rgba(255,255,255,0.8)">10110</text>
+  <text x="50" y="82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="400" fill="rgba(255,255,255,0.6)">⊕ CHECK</text>
+</svg>

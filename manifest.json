@@ -1,0 +1,16 @@
+{
+    "name": "Network Error Detection Calculator",
+    "short_name": "Net Error Detect",
+    "description": "Step-by-step network error detection calculator supporting CRC, Checksum, and Hamming Code methods",
+    "start_url": "/network/",
+    "display": "standalone",
+    "background_color": "#f8fafc",
+    "theme_color": "#6366f1",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}
